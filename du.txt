@@ -1,0 +1,12 @@
+$env:GIT_COMMITTER_DATE = git log -1 --format=%cI
+$env:GIT_AUTHOR_DATE = git log -1 --format=%aI
+
+git add .
+git commit --amend --no-edit
+
+Remove-Item Env:GIT_COMMITTER_DATE
+Remove-Item Env:GIT_AUTHOR_DATE
+
+git push --force-with-lease
+
+git log -1 --format=fuller
